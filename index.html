@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f0e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171611" media="(prefers-color-scheme: dark)">
+<title>WHO CVD Risk Chart — North Africa &amp; Middle East (Egypt)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%2314507a'/%3E%3Cpath d='M5 19h6l3-8 4 13 3-5h6' fill='none' stroke='%23fffefb' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root {
+    --paper: #f2f0e8;
+    --sheet: #fffefb;
+    --ink: #1a1916;
+    --muted: #6a665c;
+    --line: #e7e2d7;
+    --line-2: #d6d0c1;
+    --field-line: #cfc8b7;
+    --accent: #14507a;
+    --accent-2: #0e3d5d;
+    --focus: rgba(20, 80, 122, .16);
+    --tint: #f6f3ea;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --b0-f: #4e9a5c; --b0-i: #2f6b3d;
+    --b1-f: #d9c746; --b1-i: #857000;
+    --b2-f: #e59a44; --b2-i: #9c5710;
+    --b3-f: #d35b3f; --b3-i: #a83a22;
+    --b4-f: #8f2f3a; --b4-i: #7c2530;
+    --bm-f: #6f9fd8; --bm-i: #3a66a8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #171611;
+      --sheet: #201f1a;
+      --ink: #ebe7dd;
+      --muted: #9d9789;
+      --line: #34322a;
+      --line-2: #454238;
+      --field-line: #4a4740;
+      --accent: #7fb2d9;
+      --accent-2: #9cc6e6;
+      --focus: rgba(127, 178, 217, .22);
+      --tint: #27251f;
+      --b0-f: #4e9a5c; --b0-i: #85c896;
+      --b1-f: #d9c746; --b1-i: #e4d471;
+      --b2-f: #e59a44; --b2-i: #f0b87e;
+      --b3-f: #d35b3f; --b3-i: #ec9179;
+      --b4-f: #8f2f3a; --b4-i: #dd94a0;
+      --bm-f: #6f9fd8; --bm-i: #9db9e4;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 15px/1.55 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(20, 80, 122, .16);
+  }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .page { max-width: 748px; margin: 0 auto; padding: 40px 20px calc(56px + env(safe-area-inset-bottom)); }
+
+  .eyebrow {
+    margin: 0 0 14px;
+    font: 600 12px/1.4 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .13em;
+    color: var(--accent);
+  }
+  .masthead { border-top: 1px solid var(--ink); padding-top: 16px; }
+  h1 {
+    margin: 0;
+    font: 600 clamp(28px, 5.4vw, 39px)/1.06 var(--serif);
+    letter-spacing: -.02em;
+  }
+  h1 .region {
+    display: block;
+    margin-top: 7px;
+    font: italic 400 clamp(17px, 3vw, 21px)/1.3 var(--serif);
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+  .deck {
+    margin: 16px 0 0;
+    font: 400 16.5px/1.55 var(--serif);
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .rule-double {
+    border: 0;
+    border-top: 3px double var(--ink);
+    margin: 22px 0 0;
+  }
+
+  .sheet {
+    margin-top: 26px;
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 26px 28px 24px;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .lbl {
+    font: 600 12px/1.4 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--muted);
+  }
+  .hint {
+    flex-basis: 100%;
+    font: italic 400 13.5px/1.5 var(--serif);
+    color: var(--muted);
+    margin-top: -4px;
+  }
+
+  .seg {
+    display: inline-flex;
+    border: 1px solid var(--line-2);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--sheet);
+  }
+  .seg button {
+    appearance: none;
+    border: 0;
+    border-left: 1px solid var(--line-2);
+    background: transparent;
+    font: 600 13px/1 var(--sans);
+    color: var(--muted);
+    padding: 10px 15px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .seg button:first-child { border-left: 0; }
+  .seg button:hover { background: var(--tint); color: var(--ink); }
+  .seg button:active { background: var(--line); }
+  .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+  .seg button.sel { background: var(--ink); color: var(--sheet); }
+
+  .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 22px;
+    padding-top: 22px;
+  }
+  @media (max-width: 540px) { .fields { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label {
+    font: 600 12px/1.3 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+  }
+  .field .in { display: flex; align-items: center; gap: 8px; }
+  input[inputmode="decimal"], select {
+    width: 100%;
+    font: 400 15px/1.4 var(--sans);
+    color: var(--ink);
+    background: var(--sheet);
+    border: 1px solid var(--field-line);
+    border-radius: 3px;
+    padding: 11px 10px;
+    transition: border-color .15s, box-shadow .15s;
+    appearance: none;
+  }
+  select {
+    background-color: var(--tint);
+    padding: 11px 10px;
+    cursor: pointer;
+  }
+  select:hover { background-color: var(--sheet); }
+  select:focus { background-color: var(--sheet); }
+  option { background: var(--sheet); color: var(--ink); }
+  input[inputmode="decimal"]:hover, select:hover { border-color: var(--muted); }
+  input[inputmode="decimal"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--focus);
+  }
+  input::placeholder { color: color-mix(in srgb, var(--muted) 60%, transparent); }
+  .unit { font-size: 13px; color: var(--muted); white-space: nowrap; }
+
+  .units-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line-2);
+  }
+
+  .bmi-strip {
+    margin-top: 22px;
+    padding: 16px 0 4px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .bmi-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .bmi-row .k {
+    font: 600 12px/1.4 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+  }
+  .bmi-row .v {
+    font: 600 34px/1 var(--serif);
+    letter-spacing: -.02em;
+  }
+  .bmi-note {
+    margin: 8px 0 0;
+    font: italic 400 13.5px/1.5 var(--serif);
+    color: var(--muted);
+  }
+
+  .results { margin-top: 24px; }
+  .overline {
+    font: 600 12px/1.4 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .11em;
+    color: var(--muted);
+  }
+  .res-main {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  .risk {
+    font: 600 clamp(58px, 11vw, 76px)/.95 var(--serif);
+    letter-spacing: -.035em;
+  }
+  .risk .pct {
+    font-size: .42em;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0;
+    margin-left: 3px;
+  }
+  .cat {
+    display: inline-block;
+    font: 600 12px/1.3 var(--sans);
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    padding: 5px 10px;
+    border: 1.5px solid var(--band-ink, var(--muted));
+    border-radius: 3px;
+    color: var(--band-ink, var(--muted));
+    white-space: nowrap;
+  }
+  .band0 { --band-ink: var(--b0-i); }
+  .band1 { --band-ink: var(--b1-i); }
+  .band2 { --band-ink: var(--b2-i); }
+  .band3 { --band-ink: var(--b3-i); }
+  .band4 { --band-ink: var(--b4-i); }
+  .bm-under { --band-ink: var(--bm-i); }
+  .cell {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .advice {
+    margin: 16px 0 0;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    font-size: 14.5px;
+    line-height: 1.6;
+    max-width: 66ch;
+  }
+
+  .wait {
+    margin: 0;
+    font: italic 400 15px/1.6 var(--serif);
+    color: var(--muted);
+    max-width: 58ch;
+  }
+  .wait b { font: 600 14px/1.6 var(--sans); font-style: normal; color: var(--ink); }
+
+  .gauge-wrap { margin-top: 22px; }
+  .gauge {
+    position: relative;
+    display: flex;
+    height: 11px;
+    border-radius: 2px;
+    overflow: visible;
+  }
+  .gband { height: 100%; }
+  .gband:first-child { border-radius: 2px 0 0 2px; }
+  .gband:last-child { border-radius: 0 2px 2px 0; }
+  .fb0 { background: var(--b0-f); }
+  .fb1 { background: var(--b1-f); }
+  .fb2 { background: var(--b2-f); }
+  .fb3 { background: var(--b3-f); }
+  .fb4 { background: var(--b4-f); }
+  .gmark {
+    position: absolute;
+    top: -5px;
+    height: calc(100% + 10px);
+    width: 2px;
+    background: var(--ink);
+    transform: translateX(-50%);
+    transition: left .4s cubic-bezier(.25, .8, .3, 1);
+  }
+  .gmark::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4.5px solid transparent;
+    border-top-color: var(--ink);
+  }
+  .gmark.off { opacity: 0; }
+  .glabels {
+    display: flex;
+    margin-top: 8px;
+    font: 400 12px/1.4 var(--sans);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .glabels span { text-align: center; transition: color .2s; }
+  .glabels span.on { color: var(--ink); font-weight: 600; }
+
+  .source {
+    margin: 26px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .source b { color: var(--ink); font-weight: 600; }
+
+  .fineprint {
+    margin: 20px 0 0;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  .hide { display: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+  @media (max-width: 540px) {
+    .page { padding: 26px 14px calc(44px + env(safe-area-inset-bottom)); }
+    .sheet { padding: 20px 16px 18px; }
+    input[inputmode="decimal"], select { font-size: 16px; padding: 12px 10px; }
+    .toolbar .seg { display: flex; width: 100%; }
+    .toolbar .seg button { flex: 1; padding: 12px 6px; min-height: 46px; }
+    .units-row .seg { flex: 1; }
+    .units-row .seg button { flex: 1; padding: 12px 6px; min-height: 46px; }
+    .risk { font-size: clamp(52px, 16vw, 68px); }
+    .bmi-row .v { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">WHO risk charts · 2019 update</p>
+    <h1>WHO Cardiovascular Disease Risk Chart
+      <span class="region">North Africa &amp; Middle East — Egypt</span>
+    </h1>
+    <p class="deck">Official 10-year total CVD risk equations for this region. Choose the laboratory-based
+      chart (cholesterol + diabetes known — recommended for treatment decisions) or the non-laboratory
+      chart (BMI derived automatically from height and weight, when cholesterol or diabetes are
+      unavailable). Every figure recalculates as you type.</p>
+    <hr class="rule-double">
+  </header>
+
+  <main class="sheet">
+
+    <div class="toolbar">
+      <span class="lbl">Chart type</span>
+      <span class="seg" id="whoTypeSeg" role="group" aria-label="Chart type">
+        <button data-t="lab" class="sel" aria-pressed="true">Laboratory-based</button>
+        <button data-t="nonlab" aria-pressed="false">Non-laboratory (BMI)</button>
+      </span>
+      <span class="hint" id="typeHint">Cholesterol and diabetes known — recommended for treatment decisions.</span>
+    </div>
+
+    <div class="fields">
+      <div class="field"><label for="w_age">Age</label><div class="in">
+        <input type="text" id="w_age" inputmode="decimal" autocomplete="off" placeholder="40–79"><span class="unit">years</span></div></div>
+      <div class="field"><label for="w_sex">Sex</label><div class="in">
+        <select id="w_sex"><option value="">—</option><option value="male">Male</option><option value="female">Female</option></select></div></div>
+      <div class="field"><label for="w_sbp">Systolic BP</label><div class="in">
+        <input type="text" id="w_sbp" inputmode="decimal" autocomplete="off" placeholder="120"><span class="unit">mmHg</span></div></div>
+      <div class="field"><label for="w_smoker">Current smoker</label><div class="in">
+        <select id="w_smoker"><option value="">—</option><option value="true">Yes</option><option value="false">No</option></select></div></div>
+      <div class="field" id="w_dmField"><label for="w_dm">Diabetes</label><div class="in">
+        <select id="w_dm"><option value="">—</option><option value="true">Yes</option><option value="false">No</option></select></div></div>
+      <div class="field" id="w_cholField"><label for="w_chol">Total cholesterol</label><div class="in">
+        <input type="text" id="w_chol" inputmode="decimal" autocomplete="off" placeholder="180"><span class="unit" id="w_cholUnit">mg/dL</span></div></div>
+      <div class="field hide" id="w_hField"><label for="w_h">Height</label><div class="in">
+        <input type="text" id="w_h" inputmode="decimal" autocomplete="off" placeholder="170"><span class="unit">cm</span></div></div>
+      <div class="field hide" id="w_wField"><label for="w_w">Weight</label><div class="in">
+        <input type="text" id="w_w" inputmode="decimal" autocomplete="off" placeholder="75"><span class="unit">kg</span></div></div>
+    </div>
+
+    <div class="units-row" id="cholUnitRow">
+      <span class="lbl">Chol units</span>
+      <span class="seg" id="whoUnitSeg" role="group" aria-label="Cholesterol units">
+        <button data-u="mg/dL" class="sel" aria-pressed="true">mg/dL</button>
+        <button data-u="mmol/L" aria-pressed="false">mmol/L</button>
+      </span>
+    </div>
+
+    <div id="bmiAuto" class="bmi-strip hide"></div>
+
+    <div id="whoResult" class="results" aria-live="polite"></div>
+
+    <div class="gauge-wrap">
+      <div class="gauge" id="gauge" aria-hidden="true">
+        <div class="gband fb0" style="width:12.5%"></div>
+        <div class="gband fb1" style="width:12.5%"></div>
+        <div class="gband fb2" style="width:25%"></div>
+        <div class="gband fb3" style="width:25%"></div>
+        <div class="gband fb4" style="width:25%"></div>
+        <div class="gmark off" id="gmark"></div>
+      </div>
+      <div class="glabels" id="glabels">
+        <span style="width:12.5%">&lt;5%</span>
+        <span style="width:12.5%">5–10%</span>
+        <span style="width:25%">10–20%</span>
+        <span style="width:25%">20–30%</span>
+        <span style="width:25%">≥30%</span>
+      </div>
+    </div>
+
+    <p class="source"><b>Source:</b> WHO cardiovascular disease risk charts (2019 update), North Africa and
+      Middle East region — Afghanistan, Algeria, Bahrain, Egypt, Iran, Iraq, Jordan, Kuwait, Lebanon, Libya,
+      Morocco, Oman, occupied Palestinian territory, Qatar, Saudi Arabia, Sudan, Syrian Arab Republic, Tunisia,
+      Turkey, United Arab Emirates, Yemen. Management advice per WHO HEARTS risk-based CVD management guidance.</p>
+
+  </main>
+
+  <p class="fineprint">For clinical decision support only — not a substitute for professional medical judgment.</p>
+
+</div>
+
+<script src="who-charts.js?v=1"></script>
+<script>
+(function () {
+  "use strict";
+  var W = window.WHO_CHART_API;
+  var state = { type: "lab", unit: "mg/dL" };
+
+  var HINTS = {
+    lab: "Cholesterol and diabetes known — recommended for treatment decisions.",
+    nonlab: "Cholesterol unavailable — BMI is derived from height and weight automatically."
+  };
+
+  function selectIn(seg, btn) {
+    [].forEach.call(seg.querySelectorAll("button"), function (x) {
+      var on = x === btn;
+      x.classList.toggle("sel", on);
+      x.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  document.getElementById("whoTypeSeg").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-t]"); if (!b) return;
+    state.type = b.getAttribute("data-t");
+    selectIn(this, b);
+    var nonlab = state.type === "nonlab";
+    document.getElementById("w_dmField").classList.toggle("hide", nonlab);
+    document.getElementById("w_cholField").classList.toggle("hide", nonlab);
+    document.getElementById("cholUnitRow").classList.toggle("hide", nonlab);
+    document.getElementById("w_hField").classList.toggle("hide", !nonlab);
+    document.getElementById("w_wField").classList.toggle("hide", !nonlab);
+    document.getElementById("typeHint").textContent = HINTS[state.type];
+    computeWho();
+  });
+
+  document.getElementById("whoUnitSeg").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-u]"); if (!b) return;
+    state.unit = b.getAttribute("data-u");
+    selectIn(this, b);
+    document.getElementById("w_cholUnit").textContent = state.unit;
+    computeWho();
+  });
+
+  function sanitizeNum(el) {
+    var v = el.value;
+    var clean = v.replace(/[^0-9.]/g, "");
+    var first = clean.indexOf(".");
+    if (first !== -1) clean = clean.slice(0, first + 1) + clean.slice(first + 1).replace(/\./g, "");
+    if (clean !== v) el.value = clean;
+    if (parseFloat(clean) < 0) el.value = "";
+  }
+
+  ["w_age", "w_sbp", "w_chol", "w_h", "w_w"].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener("input", function () { sanitizeNum(el); computeWho(); });
+    el.addEventListener("change", function () { sanitizeNum(el); computeWho(); });
+  });
+  ["w_sex", "w_smoker", "w_dm"].forEach(function (id) {
+    document.getElementById(id).addEventListener("change", computeWho);
+  });
+
+  function esc(s) {
+    return String(s).replace(/[&<>]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c];
+    });
+  }
+  function fmt1(v) { return (Math.round(v * 10) / 10).toFixed(1); }
+
+  function bandIndex(v) {
+    return v < 5 ? 0 : v < 10 ? 1 : v < 20 ? 2 : v < 30 ? 3 : 4;
+  }
+
+  var gmark = document.getElementById("gmark");
+  var glabels = document.getElementById("glabels").children;
+
+  function setGauge(risk) {
+    var n = parseFloat(risk);
+    if (isNaN(n)) {
+      gmark.classList.add("off");
+      [].forEach.call(glabels, function (s) { s.classList.remove("on"); });
+      return;
+    }
+    gmark.classList.remove("off");
+    gmark.style.left = Math.min(Math.max(n, 0), 40) / 40 * 100 + "%";
+    var idx = bandIndex(n);
+    [].forEach.call(glabels, function (s, i) { s.classList.toggle("on", i === idx); });
+  }
+
+  function bmiInfo(bmi) {
+    if (bmi < 18.5) return { label: "Underweight", cls: "bm-under" };
+    if (bmi < 25) return { label: "Normal weight", cls: "band0" };
+    if (bmi < 30) return { label: "Overweight", cls: "band1" };
+    if (bmi < 35) return { label: "Obesity class I", cls: "band2" };
+    if (bmi < 40) return { label: "Obesity class II", cls: "band3" };
+    return { label: "Obesity class III", cls: "band4" };
+  }
+  function bmiBandName(bmi) {
+    var b = W.bmiBand(bmi);
+    return { "<20": "under 20", "20-24": "20–24", "25-29": "25–29", "30-35": "30–35", ">=35": "35 or more" }[b] || b;
+  }
+  function bmiPct(bmi) {
+    return Math.min(Math.max((bmi - 14) / 28 * 100, 0), 100);
+  }
+
+  var bmiBox = document.getElementById("bmiAuto");
+
+  function renderBmi(bmi) {
+    var info = bmiInfo(bmi);
+    bmiBox.classList.remove("hide");
+    bmiBox.innerHTML =
+      '<div class="bmi-row">' +
+        '<span class="k">BMI · auto-calculated</span>' +
+        '<span class="v tnum">' + fmt1(bmi) + '</span>' +
+        '<span class="cat ' + info.cls + '">' + esc(info.label) + '</span>' +
+        '<span class="k">WHO band ' + esc(bmiBandName(bmi)) + '</span>' +
+      '</div>' +
+      '<div class="gauge-wrap" style="margin-top:14px">' +
+        '<div class="gauge" aria-hidden="true">' +
+          '<div class="gband" style="width:16.07%;background:var(--bm-f)"></div>' +
+          '<div class="gband" style="width:23.21%;background:var(--b0-f)"></div>' +
+          '<div class="gband" style="width:17.86%;background:var(--b1-f)"></div>' +
+          '<div class="gband" style="width:17.86%;background:var(--b2-f)"></div>' +
+          '<div class="gband" style="width:17.86%;background:var(--b3-f)"></div>' +
+          '<div class="gband" style="width:7.14%;background:var(--b4-f)"></div>' +
+          '<div class="gmark" style="left:' + bmiPct(bmi) + '%"></div>' +
+        '</div>' +
+        '<div class="glabels tnum">' +
+          '<span style="width:16.07%">14</span>' +
+          '<span style="width:23.21%">18.5</span>' +
+          '<span style="width:17.86%">25</span>' +
+          '<span style="width:17.86%">30</span>' +
+          '<span style="width:17.86%">35</span>' +
+          '<span style="width:7.14%">40+</span>' +
+        '</div>' +
+      '</div>' +
+      '<p class="bmi-note">Derived from height and weight — no value is entered by hand.</p>';
+  }
+
+  function hideBmi() { bmiBox.classList.add("hide"); bmiBox.innerHTML = ""; }
+
+  function computeWho() {
+    var box = document.getElementById("whoResult");
+    var g = function (id) { return document.getElementById(id).value; };
+    // Any negative value is treated as missing — negatives never reach the chart.
+    var pn = function (id) { var v = parseFloat(g(id)); return v < 0 ? NaN : v; };
+    var nonlab = state.type === "nonlab";
+    var inp = {
+      mode: state.type,
+      age: pn("w_age"), sex: g("w_sex"), sbp: pn("w_sbp"),
+      smoker: g("w_smoker") === "" ? null : g("w_smoker") === "true",
+      dm: g("w_dm") === "" ? null : g("w_dm") === "true",
+      total_c: pn("w_chol"), chol_unit: state.unit
+    };
+
+    if (nonlab) {
+      var h = pn("w_h"), w = pn("w_w");
+      if (h >= 80 && h <= 250 && w >= 15 && w <= 500) {
+        inp.bmi = w / Math.pow(h / 100, 2);
+        renderBmi(inp.bmi);
+      } else {
+        inp.bmi = NaN;
+        hideBmi();
+      }
+    } else {
+      hideBmi();
+    }
+
+    var missing = [];
+    if (isNaN(inp.age)) missing.push("age");
+    if (!inp.sex) missing.push("sex");
+    if (isNaN(inp.sbp)) missing.push("systolic BP");
+    if (inp.smoker === null) missing.push("smoking status");
+    if (state.type === "lab") {
+      if (inp.dm === null) missing.push("diabetes status");
+      if (isNaN(inp.total_c)) missing.push("total cholesterol");
+    } else if (isNaN(inp.bmi)) {
+      missing.push("height and weight");
+    }
+
+    if (missing.length) {
+      setGauge(null);
+      box.innerHTML = '<p class="wait">Enter the remaining values: <b>' +
+        missing.join(", ") + '</b>.</p>';
+      return;
+    }
+
+    var r = W.lookup(inp);
+    if (r.error) {
+      setGauge(null);
+      box.innerHTML = '<p class="wait">' + esc(r.error) + "</p>";
+      return;
+    }
+
+    var cat = W.category(r.risk);
+    var riskNum = parseFloat(r.risk);
+    var idx = !isNaN(riskNum) ? bandIndex(riskNum)
+      : (String(r.risk).charAt(0) === "<" ? 0 : 4);
+    setGauge(riskNum);
+
+    var chartName = state.type === "lab"
+      ? (inp.dm ? "laboratory-based, people with diabetes" : "laboratory-based, people without diabetes")
+      : "non-laboratory-based";
+
+    box.innerHTML =
+      '<span class="overline">10-year total CVD risk</span>' +
+      '<div class="res-main">' +
+        '<div class="risk tnum">' + esc(r.risk) + '<span class="pct">%</span></div>' +
+        '<span class="cat band' + idx + '">' + esc(cat.label) + "</span>" +
+      "</div>" +
+      '<p class="cell tnum">Chart cell — age ' + esc(r.age_band) + " · systolic BP " + esc(r.sbp_band) +
+        " · " + (state.type === "lab" ? "cholesterol " : "BMI ") + esc(r.value_band) +
+        " · " + esc(chartName) + "</p>" +
+      '<p class="advice">' + esc(cat.advice) + "</p>";
+  }
+
+  computeWho();
+})();
+</script>
+</body>
+</html>
